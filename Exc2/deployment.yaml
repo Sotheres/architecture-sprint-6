@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exc2-app
+  labels:
+    app: exc2-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exc2-app
+  template:
+    metadata:
+      labels:
+        app: exc2-app
+    spec:
+      containers:
+        - name: exc2-app
+          image: shestera/scaletestapp:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              memory: "30Mi"
